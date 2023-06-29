@@ -17,9 +17,7 @@
         <h2>{{ headline.title }}</h2>
         <p>{{ headline.description }}</p>
       </ion-label>
+      <headline-modal *ngIf="isCardOpen" [headline]="selectedHeadline" (click)="closeCard()"></headline-modal>
     </ion-item>
   </ion-list>
-  
-  <headline-modal *ngIf="isCardOpen" [headline]="selectedHeadline" (close)="closeCard()"></headline-modal>
-
 </ion-content>
