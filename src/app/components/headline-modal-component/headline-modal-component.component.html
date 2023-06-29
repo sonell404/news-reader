@@ -1,0 +1,10 @@
+<ion-card (click)="closeCard()">
+  <ion-card-header>
+    <ion-card-title>{{ headline.title }}</ion-card-title>
+  </ion-card-header>
+  <ion-card-content>
+    <img [src]="headline.image" alt="Headline Image" />
+    <p>{{ headline.description }}</p>
+    <a [href]="headline.url">Read More</a>
+  </ion-card-content>
+</ion-card>

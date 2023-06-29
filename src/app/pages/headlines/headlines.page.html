@@ -1,19 +1,25 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>headlines</ion-title>
+    <ion-title>Top Headlines</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
+<ion-content class="ion-padding">
   <ion-list>
-    <ion-item *ngFor="let article of articles" [routerLink]="['/article', article.id]">
-      <ion-thumbnail slot="start">
-        <img [src]="article.urlToImage" />
-      </ion-thumbnail>
+    <ion-item
+      button
+      detail
+      lines="inset"
+      *ngFor="let headline of headlinesResult"
+      (click)="openCard(headline)"
+    >
       <ion-label>
-        <h2>{{ article.title }}</h2>
-        <p>{{ article.description }}</p>
+        <h2>{{ headline.title }}</h2>
+        <p>{{ headline.description }}</p>
       </ion-label>
     </ion-item>
   </ion-list>
+  
+  <headline-modal *ngIf="isCardOpen" [headline]="selectedHeadline" (close)="closeCard()"></headline-modal>
+
 </ion-content>

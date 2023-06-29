@@ -8,15 +8,20 @@ import { News } from '../models/news.model';
   providedIn: 'root',
 })
 export class NewsService {
-  private newsUrl =
-    'https://newsapi.org/v2/top-headlines?country=us&apiKey=a478fa2e8e864f0bb9af9b26bc168b80';
+  private headlinesUrl: string = '';
+  private techNews: string = '';
+  private apiKey: string = '';
 
-  constructor(private http: HttpClient) {}
+  constructor(private http: HttpClient) {
+    this.apiKey = 'a478fa2e8e864f0bb9af9b26bc168b80';
+    this.headlinesUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${this.apiKey}`;
+    this.techNews = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${this.apiKey}`;
+  }
 
-  getNews(): Observable<News[]> {
-    const apiKey = 'a478fa2e8e864f0bb9af9b26bc168b80';
-    const url = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${apiKey}`;
-
-    return this.http.get<News[]>(url).pipe(map((res) => res));
+  getHeadlines(): Observable<any> {
+    return this.http.get(this.headlinesUrl);
+  }
+  getTechNews(): Observable<any> {
+    return this.http.get(this.techNews);
   }
 }

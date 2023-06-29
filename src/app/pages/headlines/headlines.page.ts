@@ -1,8 +1,10 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 import { NewsService } from '../../services/news.service';
-import { News } from '../../models/news.model';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
+
+import { ModalController, IonContent } from '@ionic/angular';
+import { HeadlineModalComponent } from '../../components/headline-modal-component/headline-modal-component.component';
 
 @Component({
   selector: 'app-headlines',
@@ -10,16 +12,32 @@ import { Router } from '@angular/router';
   styleUrls: ['./headlines.page.scss'],
 })
 export class HeadlinesPage implements OnInit {
-  news: Observable<News[]> | undefined;
+  headlines: Observable<any> | undefined;
   articles: any;
 
-  constructor(private newsService: NewsService, private router: Router) {}
+  constructor(
+    private newsService: NewsService,
+    private router: Router,
+    private modalController: ModalController
+  ) {}
+
+  headlinesResult: any = [];
+  isCardOpen: boolean = false;
+  selectedHeadline: any;
 
   ngOnInit() {
-    this.news = this.newsService.getNews();
+    this.newsService.getHeadlines().subscribe((data) => {
+      console.log(data);
+      this.headlinesResult = data.articles;
+    });
   }
 
-  openArticle(url: string) {
-    window.open(url, '_blank');
+  openCard(headline: any) {
+    this.selectedHeadline = headline;
+    this.isCardOpen = true;
   }
+
+  closeCard() {
+    this.isCardOpen = false;
+  }  
 }

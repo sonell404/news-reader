@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 
 import { HeadlinesPageRoutingModule } from './headlines-routing.module';
+import { HeadlineModalComponent } from '../../components/headline-modal-component/headline-modal-component.component';
 
 import { HeadlinesPage } from './headlines.page';
 
@@ -15,6 +16,6 @@ import { HeadlinesPage } from './headlines.page';
     IonicModule,
     HeadlinesPageRoutingModule
   ],
-  declarations: [HeadlinesPage]
+  declarations: [HeadlinesPage, HeadlineModalComponent]
 })
 export class HeadlinesPageModule {}

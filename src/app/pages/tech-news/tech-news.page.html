@@ -1,13 +1,22 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
-    <ion-title>tech-news</ion-title>
+    <ion-title>Technology News</ion-title>
   </ion-toolbar>
 </ion-header>
 
-<ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">tech-news</ion-title>
-    </ion-toolbar>
-  </ion-header>
+<ion-content class="ion-padding">
+  <ion-list>
+    <ion-item
+      button
+      detail
+      lines="inset"
+      *ngFor="let headline of techNewsResult"
+      [routerLink]="['/tabs/tech-news', headline.id]"
+    >
+      <ion-label>
+        <h2>{{ headline.title }}</h2>
+        <p>{{ headline.description }}</p>
+      </ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
