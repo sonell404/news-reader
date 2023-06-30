@@ -14,7 +14,7 @@ export class NewsService {
 
   constructor(private http: HttpClient) {
     this.apiKey = 'a478fa2e8e864f0bb9af9b26bc168b80';
-    this.headlinesUrl = `https://newsapi.org/v2/top-headlines?country=ie&apiKey=${this.apiKey}`;
+    this.headlinesUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${this.apiKey}`;
     this.techNews = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${this.apiKey}`;
   }
 

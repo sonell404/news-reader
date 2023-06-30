@@ -12,9 +12,25 @@
     <ion-card-header>
       <ion-card-title>{{ article.title }}</ion-card-title>
     </ion-card-header>
-
+    <ion-card-subtitle>
+      <ion-chip>
+        <ion-icon name="calendar"></ion-icon>
+        <ion-label>{{ article.publishedAt | date }}</ion-label>
+      </ion-chip>
+      <ion-chip *ngIf="article.author">
+        <ion-icon name="person"></ion-icon>
+        <ion-label>{{ article.author }}</ion-label>
+      </ion-chip> 
+    </ion-card-subtitle>
+    <ion-img [src]="article.urlToImage" *ngIf="article.urlToImage"></ion-img>
     <ion-card-content>
       <p>{{ articleDescription }}</p>
+      <ion-button
+        color="primary"
+        expand="block"
+        href="{{ article.url }}"
+        target="_blank" rel="noopener" noreferrer nofollow noopener
+      > Read More </ion-button>
     </ion-card-content>
   </ion-card>
 </ion-content>
