@@ -1,7 +1,7 @@
 // Service to fetch news from the API
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, map } from 'rxjs';
+import { Observable, catchError, map, throwError } from 'rxjs';
 import { News } from '../models/news.model';
 
 @Injectable({
@@ -22,14 +22,34 @@ export class NewsService {
   //   return this.http.get(this.headlinesUrl);
   // }
 
-  // Method to obtain an article from the API
-  getArticle(articleTitle: any): Observable<any> {
-    const encodedTitle = encodeURIComponent(articleTitle);
-    console.log(encodedTitle);
+  // Method to get an article object from the array of articles
+  getArticle(index: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.getHeadlines().subscribe(
+        (data: any) => {
+          console.log(data.articles[index].title);
+          resolve(data.articles[index]);
+        },
+        (error: any) => {
+          reject(error);
+        }
+      );
+    });
+  }
 
-    return this.http.get(
-      `https://newsapi.org/v2/everything?q=${encodedTitle}&apiKey=${this.apiKey}`
-    ); // Returns an observable
+  // Method to get the URL of the returned by the getArticle method above
+  getArticleUrl(index: number): Promise<any> {
+    return new Promise((resolve, reject) => {
+      this.getHeadlines().subscribe(
+        (data: any) => {
+          console.log(data.articles[index].url);
+          resolve(data.articles[index].url);
+        },
+        (error: any) => {
+          reject(error);
+        }
+      );
+    });
   }
 
   getHeadlines(): Observable<any> {

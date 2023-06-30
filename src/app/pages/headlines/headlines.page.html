@@ -11,7 +11,7 @@
       detail
       lines="inset"
       *ngFor="let headline of headlinesResult"
-      [routerLink]="['/tabs/headlines', headline.id]"
+      [routerLink]="['/tabs', 'headlines', headline.title]"
       (click)="openArticlePage(headline)"
     >
       <ion-label>

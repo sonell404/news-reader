@@ -28,18 +28,13 @@ export class HeadlinesPage implements OnInit {
     });
   }
 
-  // Method to open article page containing article content
-  // openArticle(article: any) {
-  //   window.open(article.url, '_blank');
-  // }
-
-  // Method to pass to click event which will retrieve article title, content, and URL and pass to article page
-  // openArticlePage(article: any) {
-  //   this.article = this.newsService.getArticle(article);
-  //   this.router.navigate(['/article', article.title]);
-  // }
-
+  // Method to get index of article in array
+  getArticleIndex(article: any) {
+    return this.headlinesResult.indexOf(article);
+  } 
+  // Method to open article page and pass index of article
   openArticlePage(article: any) {
-    this.router.navigate(['/article', article]);
-  } // Pass article title to article page
+    const index = this.getArticleIndex(article);
+    this.router.navigate(['/article', { index: index }]);
+  }
 }
