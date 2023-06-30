@@ -14,7 +14,16 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../headlines/headlines.module').then((m) => m.HeadlinesPageModule),
+              import('../headlines/headlines.module').then(
+                (m) => m.HeadlinesPageModule
+              ),
+          },
+          {
+            path: '',
+            loadChildren: () =>
+              import('../article/article.module').then(
+                (m) => m.ArticlePageModule
+              ),
           },
         ],
       },
@@ -24,7 +33,9 @@ const routes: Routes = [
           {
             path: '',
             loadChildren: () =>
-              import('../tech-news/tech-news.module').then((m) => m.TechNewsPageModule),
+              import('../tech-news/tech-news.module').then(
+                (m) => m.TechNewsPageModule
+              ),
           },
         ],
       },

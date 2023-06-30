@@ -4,7 +4,6 @@ import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 import { ModalController, IonContent } from '@ionic/angular';
-import { HeadlineModalComponent } from '../../components/headline-modal-component/headline-modal-component.component';
 
 @Component({
   selector: 'app-headlines',
@@ -13,17 +12,14 @@ import { HeadlineModalComponent } from '../../components/headline-modal-componen
 })
 export class HeadlinesPage implements OnInit {
   headlines: Observable<any> | undefined;
-  articles: any;
+  article: Observable<any> | undefined;
 
   constructor(
     private newsService: NewsService,
-    private router: Router,
-    private modalController: ModalController
+    private router: Router
   ) {}
 
   headlinesResult: any = [];
-  isCardOpen: boolean = false;
-  selectedHeadline: any;
 
   ngOnInit() {
     this.newsService.getHeadlines().subscribe((data) => {
@@ -32,12 +28,18 @@ export class HeadlinesPage implements OnInit {
     });
   }
 
-  openCard(headline: any) {
-    this.selectedHeadline = headline;
-    this.isCardOpen = true;
-  }
+  // Method to open article page containing article content
+  // openArticle(article: any) {
+  //   window.open(article.url, '_blank');
+  // }
 
-  closeCard() {
-    this.isCardOpen = false;
-  }  
+  // Method to pass to click event which will retrieve article title, content, and URL and pass to article page
+  // openArticlePage(article: any) {
+  //   this.article = this.newsService.getArticle(article);
+  //   this.router.navigate(['/article', article.title]);
+  // }
+
+  openArticlePage(article: any) {
+    this.router.navigate(['/article', article]);
+  } // Pass article title to article page
 }

@@ -11,13 +11,13 @@
       detail
       lines="inset"
       *ngFor="let headline of headlinesResult"
-      (click)="openCard(headline)"
+      [routerLink]="['/tabs/headlines', headline.id]"
+      (click)="openArticlePage(headline)"
     >
       <ion-label>
         <h2>{{ headline.title }}</h2>
         <p>{{ headline.description }}</p>
       </ion-label>
-      <headline-modal *ngIf="isCardOpen" [headline]="selectedHeadline" (click)="closeCard()"></headline-modal>
     </ion-item>
   </ion-list>
 </ion-content>
