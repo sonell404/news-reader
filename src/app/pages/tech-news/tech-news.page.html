@@ -1,11 +1,14 @@
 <ion-header [translucent]="true">
+  <!-- Ion toolbar with tertiary color -->
   <ion-toolbar color="tertiary">
+    <!-- Title for the header -->
     <ion-title>Technology News</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
   <ion-list>
+    <!-- Iterate over each headline in the techNewsResult array -->
     <ion-item
       class="item-divider"
       button
@@ -16,9 +19,12 @@
       (click)="openArticle(headline)"
     >
       <div class="image-container">
+        <!-- Display the image associated with the headline -->
         <ion-img [src]="headline.urlToImage" slot="start"></ion-img>
         <ion-label>
+          <!-- Display the title of the headline -->
           <h2>{{ headline.title }}</h2>
+          <!-- Display the description of the headline -->
           <p>{{ headline.description }}</p>
         </ion-label>
       </div>

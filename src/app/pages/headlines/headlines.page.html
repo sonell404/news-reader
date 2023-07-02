@@ -1,11 +1,16 @@
 <ion-header [translucent]="true">
+  <!-- Translucent header -->
   <ion-toolbar color="tertiary">
+    <!-- Toolbar with tertiary color -->
     <ion-title>Top Headlines</ion-title>
+    <!-- Title for the header -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content class="ion-padding">
+  <!-- Content area with ion-padding -->
   <ion-list>
+    <!-- List of items -->
     <ion-item
       class="item-divider"
       button
@@ -15,11 +20,17 @@
       [routerLink]="['/tabs', 'headlines', headline.title]"
       (click)="openArticle(headline)"
     >
+      <!-- Item in the list -->
       <div class="image-container">
+        <!-- Container for the image and label -->
         <ion-img [src]="headline.urlToImage" slot="start"></ion-img>
+        <!-- Image element -->
         <ion-label>
+          <!-- Label for the item -->
           <h2>{{ headline.title }}</h2>
+          <!-- Headline title -->
           <p>{{ headline.description }}</p>
+          <!-- Headline description -->
         </ion-label>
       </div>
     </ion-item>

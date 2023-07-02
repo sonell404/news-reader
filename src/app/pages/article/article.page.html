@@ -1,40 +1,56 @@
 <ion-header>
+  <!-- Header section -->
   <ion-toolbar color="tertiary">
+    <!-- Toolbar with tertiary color -->
     <ion-buttons slot="start" defaultHref="tabs/(headlines:headlines)">
+      <!-- Back button with default href -->
       <ion-back-button></ion-back-button>
     </ion-buttons>
     <ion-title>{{ article?.title }}</ion-title>
+    <!-- Title for the header -->
   </ion-toolbar>
 </ion-header>
 
 <ion-content padding>
+  <!-- Content area with padding -->
   <ion-card *ngIf="article">
+    <!-- Card element with ngIf condition -->
     <ion-card-header>
+      <!-- Card header section -->
       <ion-card-title>{{ article.title }}</ion-card-title>
+      <!-- Title for the card -->
     </ion-card-header>
     <ion-card-subtitle>
+      <!-- Card subtitle section -->
       <ion-chip class="padding">
+        <!-- Chip element with padding class -->
         <ion-icon name="calendar"></ion-icon>
+        <!-- Icon element -->
         <ion-label>{{ article.publishedAt | date }}</ion-label>
+        <!-- Label for the chip -->
       </ion-chip>
       <ion-chip *ngIf="article.author" class="padding">
+        <!-- Chip element with ngIf condition and padding class -->
         <ion-icon name="person"></ion-icon>
+        <!-- Icon element -->
         <ion-label>{{ article.author }}</ion-label>
+        <!-- Label for the chip -->
       </ion-chip>
     </ion-card-subtitle>
     <ion-img [src]="article.urlToImage" *ngIf="article.urlToImage"></ion-img>
+    <!-- Image element with ngIf condition -->
     <ion-card-content>
+      <!-- Card content section -->
       <p>{{ articleDescription }}</p>
+      <!-- Paragraph element -->
       <ion-button
         color="tertiary"
         expand="block"
         href="{{ article.url }}"
         target="_blank"
-        rel="noopener"
-        noreferrer
-        nofollow
-        noopener
+        rel="noopener noreferrer nofollow noopener"
       >
+        <!-- Button element -->
         Read More
       </ion-button>
     </ion-card-content>
