@@ -1,9 +1,7 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { NewsService } from '../../services/news.service';
 import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
-
-import { ModalController, IonContent } from '@ionic/angular';
 
 @Component({
   selector: 'app-headlines',
@@ -15,8 +13,7 @@ export class HeadlinesPage implements OnInit {
   article: Observable<any> | undefined;
 
   constructor(
-    private newsService: NewsService,
-    private router: Router
+    private newsService: NewsService
   ) {}
 
   headlinesResult: any = [];
@@ -28,13 +25,9 @@ export class HeadlinesPage implements OnInit {
     });
   }
 
-  // Method to get index of article in array
-  getArticleIndex(article: any) {
-    return this.headlinesResult.indexOf(article);
-  } 
-  // Method to open article page and pass index of article
-  openArticlePage(article: any) {
-    const index = this.getArticleIndex(article);
-    this.router.navigate(['/article', { index: index }]);
+  // Method to open an article
+  openArticle(article: any) {
+    const newsStream = this.headlinesResult;
+    this.newsService.openArticlePage(newsStream, article);
   }
 }

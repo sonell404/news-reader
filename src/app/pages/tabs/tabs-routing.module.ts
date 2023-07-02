@@ -37,6 +37,13 @@ const routes: Routes = [
                 (m) => m.TechNewsPageModule
               ),
           },
+          {
+            path: ' ',
+            loadChildren: () =>
+              import('../article/article.module').then(
+                (m) => m.ArticlePageModule
+              ),
+          },
         ],
       },
     ],

@@ -22,4 +22,9 @@ export class TechNewsPage implements OnInit {
     });
   }
 
+  // Method to open an article
+  openArticle(article: any) {
+    const newsStream = this.techNewsResult;
+    this.newsService.openArticlePage(newsStream, article);
+  }
 }

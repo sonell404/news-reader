@@ -24,6 +24,7 @@ export class ArticlePage implements OnInit {
 
   async ngOnInit() {
     this.articleIndex = this.activatedRoute.snapshot.paramMap.get('index');
+    
     console.log('INDEX:' + this.articleIndex);
 
     try {
@@ -31,6 +32,7 @@ export class ArticlePage implements OnInit {
       this.articleUrl = await this.newsService.getArticleUrl(this.articleIndex);
       this.articleContent = await this.article.content;
       this.articleDescription = await this.article.description;
+
       console.log('ARTICLE:' + this.article.title);
     } catch (error) {
       console.error('Error retrieving article:', error);

@@ -2,25 +2,21 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
 import { Observable, catchError, map, throwError } from 'rxjs';
-import { News } from '../models/news.model';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root',
 })
 export class NewsService {
   private headlinesUrl: string = '';
-  private techNews: string = '';
+  private techUrl: string = '';
   private apiKey: string = '';
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private router: Router) {
     this.apiKey = 'a478fa2e8e864f0bb9af9b26bc168b80';
     this.headlinesUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${this.apiKey}`;
-    this.techNews = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${this.apiKey}`;
+    this.techUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${this.apiKey}`;
   }
-
-  // getHeadline(articleTitle: any): Observable<any> {
-  //   return this.http.get(this.headlinesUrl);
-  // }
 
   // Method to get an article object from the array of articles
   getArticle(index: number): Promise<any> {
@@ -52,10 +48,20 @@ export class NewsService {
     });
   }
 
+  // Method to get index of article in array
+  getArticleIndex(newsStream: any[], article: any) {
+    return newsStream.indexOf(article);
+  } 
+  // Method to open article page and pass index of article
+  openArticlePage(newsStream: any[], article: any) {
+    const index = this.getArticleIndex(newsStream, article);
+    this.router.navigate(['/article', { index: index }]);
+  }
+
   getHeadlines(): Observable<any> {
     return this.http.get(this.headlinesUrl);
   }
   getTechNews(): Observable<any> {
-    return this.http.get(this.techNews);
+    return this.http.get(this.techUrl);
   }
 }
