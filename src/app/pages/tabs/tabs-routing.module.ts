@@ -38,7 +38,7 @@ const routes: Routes = [
               ),
           },
           {
-            path: ' ',
+            path: '',
             loadChildren: () =>
               import('../article/article.module').then(
                 (m) => m.ArticlePageModule

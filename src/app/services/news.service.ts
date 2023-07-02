@@ -1,7 +1,7 @@
 // Service to fetch news from the API
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-import { Observable, catchError, map, throwError } from 'rxjs';
+import { Observable } from 'rxjs';
 import { Router } from '@angular/router';
 
 @Injectable({
@@ -11,6 +11,7 @@ export class NewsService {
   private headlinesUrl: string = '';
   private techUrl: string = '';
   private apiKey: string = '';
+  private newsType: string = '';
 
   constructor(private http: HttpClient, private router: Router) {
     this.apiKey = 'a478fa2e8e864f0bb9af9b26bc168b80';
@@ -20,16 +21,25 @@ export class NewsService {
 
   // Method to get an article object from the array of articles
   getArticle(index: number): Promise<any> {
+    let newsStream: Observable<any>;
+    if (this.newsType === 'regular') {
+      newsStream = this.getHeadlines();
+    } else if (this.newsType === 'tech') {
+      newsStream = this.getTechNews();
+    } else {
+      throw new Error('Invalid news type');
+    }
+
     return new Promise((resolve, reject) => {
-      this.getHeadlines().subscribe(
-        (data: any) => {
+      newsStream.subscribe({
+        next: (data: any) => {
           console.log(data.articles[index].title);
           resolve(data.articles[index]);
         },
-        (error: any) => {
+        error: (error: any) => {
           reject(error);
-        }
-      );
+        },
+      });
     });
   }
 
@@ -51,17 +61,26 @@ export class NewsService {
   // Method to get index of article in array
   getArticleIndex(newsStream: any[], article: any) {
     return newsStream.indexOf(article);
-  } 
+  }
+
   // Method to open article page and pass index of article
   openArticlePage(newsStream: any[], article: any) {
     const index = this.getArticleIndex(newsStream, article);
     this.router.navigate(['/article', { index: index }]);
   }
 
+  // Method to get headlines from the API
   getHeadlines(): Observable<any> {
     return this.http.get(this.headlinesUrl);
   }
+
+  // Method to get tech news from the API
   getTechNews(): Observable<any> {
     return this.http.get(this.techUrl);
+  }
+
+  // Method to set the news type
+  setNewsType(type: string) {
+    this.newsType = type;
   }
 }

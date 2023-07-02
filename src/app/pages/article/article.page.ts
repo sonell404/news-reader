@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
 import { NewsService } from '../../services/news.service';
-import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-article',
@@ -9,13 +8,13 @@ import { Observable, of } from 'rxjs';
   styleUrls: ['./article.page.scss'],
 })
 export class ArticlePage implements OnInit {
-  article: any;
-  articleIndex: number | undefined;
-  articleContent: string | undefined;
-  articleDescription: string | undefined;
-  articleUrl: string | undefined;
-  activatedRoute: ActivatedRoute | any;
-  newsService: NewsService | any;
+  article: any; // Holds the article object
+  articleIndex: number | undefined; // Holds the index of the article
+  articleContent: string | undefined; // Holds the content of the article
+  articleDescription: string | undefined; // Holds the description of the article
+  articleUrl: string | undefined; // Holds the URL of the article
+  activatedRoute: ActivatedRoute | any; // Instance of ActivatedRoute
+  newsService: NewsService | any; // Instance of NewsService
 
   constructor(newsService: NewsService, activatedRoute: ActivatedRoute) {
     this.newsService = newsService;
@@ -24,18 +23,14 @@ export class ArticlePage implements OnInit {
 
   async ngOnInit() {
     this.articleIndex = this.activatedRoute.snapshot.paramMap.get('index');
-    
-    console.log('INDEX:' + this.articleIndex);
 
     try {
-      this.article = await this.newsService.getArticle(this.articleIndex);
-      this.articleUrl = await this.newsService.getArticleUrl(this.articleIndex);
-      this.articleContent = await this.article.content;
-      this.articleDescription = await this.article.description;
-
-      console.log('ARTICLE:' + this.article.title);
+      this.article = await this.newsService.getArticle(this.articleIndex); // Retrieve the article based on the index
+      this.articleUrl = await this.newsService.getArticleUrl(this.articleIndex); // Retrieve the article URL based on the index
+      this.articleContent = await this.article.content; // Set the article content
+      this.articleDescription = await this.article.description; // Set the article description
     } catch (error) {
-      console.error('Error retrieving article:', error);
+      console.error('Error retrieving article:', error); // Log an error if there is an issue retrieving the article
     }
   }
 }

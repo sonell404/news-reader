@@ -9,12 +9,7 @@ import { HeadlinesPageRoutingModule } from './headlines-routing.module';
 import { HeadlinesPage } from './headlines.page';
 
 @NgModule({
-  imports: [
-    CommonModule,
-    FormsModule,
-    IonicModule,
-    HeadlinesPageRoutingModule
-  ],
-  declarations: [HeadlinesPage]
+  imports: [CommonModule, FormsModule, IonicModule, HeadlinesPageRoutingModule],
+  declarations: [HeadlinesPage],
 })
 export class HeadlinesPageModule {}
