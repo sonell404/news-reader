@@ -1,5 +1,5 @@
 <ion-header>
-  <ion-toolbar color="primary">
+  <ion-toolbar color="tertiary">
     <ion-buttons slot="start" defaultHref="tabs/(headlines:headlines)">
       <ion-back-button></ion-back-button>
     </ion-buttons>
@@ -13,11 +13,11 @@
       <ion-card-title>{{ article.title }}</ion-card-title>
     </ion-card-header>
     <ion-card-subtitle>
-      <ion-chip>
+      <ion-chip class="padding">
         <ion-icon name="calendar"></ion-icon>
         <ion-label>{{ article.publishedAt | date }}</ion-label>
       </ion-chip>
-      <ion-chip *ngIf="article.author">
+      <ion-chip *ngIf="article.author" class="padding">
         <ion-icon name="person"></ion-icon>
         <ion-label>{{ article.author }}</ion-label>
       </ion-chip>
@@ -26,7 +26,7 @@
     <ion-card-content>
       <p>{{ articleDescription }}</p>
       <ion-button
-        color="primary"
+        color="tertiary"
         expand="block"
         href="{{ article.url }}"
         target="_blank"
