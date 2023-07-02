@@ -43,7 +43,7 @@ export class NewsService {
     });
   }
 
-  // Method to get the URL of the returned by the getArticle method above
+  // Method to get the URL of the article returned by the getArticle method above
   getArticleUrl(index: number): Promise<any> {
     return new Promise((resolve, reject) => {
       this.getHeadlines().subscribe(

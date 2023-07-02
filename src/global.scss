@@ -27,10 +27,6 @@
 
 ion-content {
   --background: #f4f4f4;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 100vh;
 }
 
 ion-list {
@@ -40,9 +36,6 @@ ion-list {
 }
 ion-item {
   --background: #ffffff;
-}
-ion-item.thumbnail {
-    max-width: 100px;
 }
 
 ion-img,

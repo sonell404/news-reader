@@ -27,8 +27,8 @@ export class ArticlePage implements OnInit {
     try {
       this.article = await this.newsService.getArticle(this.articleIndex); // Retrieve the article based on the index
       this.articleUrl = await this.newsService.getArticleUrl(this.articleIndex); // Retrieve the article URL based on the index
-      this.articleContent = await this.article.content; // Set the article content
-      this.articleDescription = await this.article.description; // Set the article description
+      this.articleContent = this.article.content; // Set the article content
+      this.articleDescription = this.article.description; // Set the article description
     } catch (error) {
       console.error('Error retrieving article:', error); // Log an error if there is an issue retrieving the article
     }
