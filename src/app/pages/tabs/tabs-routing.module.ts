@@ -46,6 +46,25 @@ const routes: Routes = [
           },
         ],
       },
+      {
+        path: 'business-news',
+        children: [
+          {
+            path: '',
+            loadChildren: () =>
+              import('../business-news/business-news.module').then(
+                (m) => m.BusinessNewsPageModule
+              ),
+          },
+          {
+            path: '',
+            loadChildren: () =>
+              import('../article/article.module').then(
+                (m) => m.ArticlePageModule
+              ),
+          },
+        ],
+      },
     ],
   },
   {

@@ -10,6 +10,7 @@ import { Router } from '@angular/router';
 export class NewsService {
   private headlinesUrl: string = '';
   private techUrl: string = '';
+  private businessUrl: string = '';
   private apiKey: string = '';
   private newsType: string = '';
 
@@ -17,6 +18,7 @@ export class NewsService {
     this.apiKey = 'a478fa2e8e864f0bb9af9b26bc168b80';
     this.headlinesUrl = `https://newsapi.org/v2/top-headlines?country=us&apiKey=${this.apiKey}`;
     this.techUrl = `https://newsapi.org/v2/top-headlines?country=us&category=technology&apiKey=${this.apiKey}`;
+    this.businessUrl = `https://newsapi.org/v2/top-headlines?country=us&category=business&apiKey=${this.apiKey}`;
   }
 
   // Method to get an article object from the array of articles
@@ -25,7 +27,9 @@ export class NewsService {
     if (this.newsType === 'regular') {
       newsStream = this.getHeadlines();
     } else if (this.newsType === 'tech') {
-      newsStream = this.getTechNews();
+      newsStream = this.getTechNews(); 
+    } else if (this.newsType === 'business') {
+      newsStream = this.getBusinessNews();
     } else {
       throw new Error('Invalid news type');
     }
@@ -77,6 +81,11 @@ export class NewsService {
   // Method to get tech news from the API
   getTechNews(): Observable<any> {
     return this.http.get(this.techUrl);
+  }
+
+  // Method to get business news from the API
+  getBusinessNews(): Observable<any> {
+    return this.http.get(this.businessUrl);
   }
 
   // Method to set the news type
